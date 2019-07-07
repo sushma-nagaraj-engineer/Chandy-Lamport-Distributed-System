@@ -21,36 +21,5 @@ second and third tokens are values of minPerActive, and maxPerActive respectivel
 The first token is the node ID. The second token is the host-name of the machine on which the node runs. The third token is the port on which the node listens for incoming connections. After the first n + 1 valid lines, the next n lines consist of a space delimited list of at most n − 1 tokens.
 The kth valid line after the first line is a space delimited list of node IDs which are the neighbor of node k. Your parser should be written so as to be robust concerning leading and trailing white space or extra lines at the beginning or end of file, as well as interleaved with valid lines. The # character will denote a comment. On any valid line, any characters after a # character should be
 ignored.
-Listing 1: Example configuration file
-# six global parameters
-5 6 10 100 2000 15
-0 dc02 1234 # nodeID hostName l i s t e nPo r t
-1 dc03 1233
-2 dc04 1233
-3 dc05 1232
-4 dc06 1233
-1 4 # spac e de l imi t ed l i s t o f ne ighbor s f o r node 0
-2 3 4 # spac e de l imi t ed l i s t o f ne ighbor s f o r node 1
-0 1 3 # . . . node 2
-0 4 # . . . node 3
-1 3 # . . . node 4
-4 Output Format
-If the configuration file is named <config_name>.txt and is configured to use n nodes, then your
-program should output n output files, named in according to the following format:
-<config_name>-<node_id>.out, where node_id ∈ {0, ..., n − 1}.
-The output file for process j should be named <config_name>-j.out and should contain the
-following: If your program took m snapshots, then each output file should contain m lines. The
-ith line should contain the vector timestamp of the ith snapshot as seen by process j. Each line of
-the output file should contain n space delimited tokens, each of which should be a non-negative
-integer. In each line, the timestamps must appear in increasing order of process id. That is, the kth
-number in the ith line should be the timestamp value for process k. An example file is described
-below.
 
-Listing 2: Example output file for 7 nodes
-0 4 3 6 0 2 3
-3 7 6 7 2 4 4
-6 9 11 10 5 7 5
-8 12 14 23 8 10 7
-In this example, the first snapshot has vector clock value h0, 4, 3, 6, 0, 2, 3i; the value of node 0’s
-clock is 0, and the value of mode 3’s clock is 6.
 
